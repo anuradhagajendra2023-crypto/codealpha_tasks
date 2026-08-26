@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - CodeAlpha Projects</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            📋 CodeAlpha Projects
+        </div>
+
+        <div class="nav-links">
+
+            <span>
+                👤 <%= user.name %>
+            </span>
+
+            <a href="/dashboard">
+                🏠 Dashboard
+            </a>
+
+            <a href="/projects/create">
+                ➕ New Project
+            </a>
+
+            <a href="/logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <div class="welcome">
+
+            <h1>
+                Welcome, <%= user.name %>! 👋
+            </h1>
+
+            <p>
+                Manage your projects, tasks and team members.
+            </p>
+
+        </div>
+
+
+        <!-- Projects Header -->
+        <div class="section-header">
+
+            <h2>
+                📁 Your Projects
+            </h2>
+
+            <a
+                href="/projects/create"
+                class="button"
+            >
+                ➕ Create Project
+            </a>
+
+        </div>
+
+
+        <!-- Projects -->
+        <% if (projects.length === 0) { %>
+
+            <div class="empty-card">
+
+                <h3>
+                    No projects yet
+                </h3>
+
+                <p>
+                    Create your first project to get started.
+                </p>
+
+                <a
+                    href="/projects/create"
+                    class="button"
+                >
+                    Create Your First Project
+                </a>
+
+            </div>
+
+        <% } else { %>
+
+            <div class="project-grid">
+
+                <% projects.forEach(project => { %>
+
+                    <div class="project-card">
+
+                        <h3>
+                            <%= project.name %>
+                        </h3>
+
+                        <p>
+                            <%= project.description || "No description available." %>
+                        </p>
+
+                        <small>
+                            👤 Owner:
+                            <%= project.owner_name %>
+                        </small>
+
+                        <br><br>
+
+                        <a
+                            href="/projects/<%= project.id %>"
+                            class="button"
+                        >
+                            Open Project →
+                        </a>
+
+                    </div>
+
+                <% }); %>
+
+            </div>
+
+        <% } %>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CodeAlpha Project Management
+        </p>
+
+    </footer>
+
+</body>
+</html>

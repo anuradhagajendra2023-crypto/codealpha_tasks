@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        <%= profileUser.name %> - Profile
+    </title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- NAVBAR -->
+    <!-- ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌐 CodeAlpha Social
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                🏠 Home
+            </a>
+
+            <a href="/profile/<%= currentUser.username %>">
+                👤 My Profile
+            </a>
+
+            <a href="/logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================= -->
+    <!-- PROFILE -->
+    <!-- ========================= -->
+
+    <main class="profile-container">
+
+        <section class="profile-card">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <h1>
+                <%= profileUser.name %>
+            </h1>
+
+            <p class="profile-username">
+                @<%= profileUser.username %>
+            </p>
+
+            <% if (profileUser.bio) { %>
+
+                <p class="profile-bio">
+                    <%= profileUser.bio %>
+                </p>
+
+            <% } else { %>
+
+                <p class="profile-bio">
+                    No bio available.
+                </p>
+
+            <% } %>
+
+
+            <!-- ========================= -->
+            <!-- FOLLOW STATS -->
+            <!-- ========================= -->
+
+            <div class="profile-stats">
+
+                <div>
+                    <strong>
+                        <%= posts.length %>
+                    </strong>
+
+                    <span>Posts</span>
+                </div>
+
+                <div>
+                    <strong>
+                        <%= followers %>
+                    </strong>
+
+                    <span>Followers</span>
+                </div>
+
+                <div>
+                    <strong>
+                        <%= following %>
+                    </strong>
+
+                    <span>Following</span>
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- FOLLOW BUTTON -->
+            <!-- ========================= -->
+
+            <% if (profileUser.id !== currentUser.id) { %>
+
+                <form
+                    action="/profile/<%= profileUser.id %>/follow"
+                    method="POST"
+                >
+
+                    <button
+                        type="submit"
+                        class="follow-button"
+                    >
+
+                        <% if (isFollowing) { %>
+
+                            ✓ Following
+
+                        <% } else { %>
+
+                            + Follow
+
+                        <% } %>
+
+                    </button>
+
+                </form>
+
+            <% } %>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- USER POSTS -->
+        <!-- ========================= -->
+
+        <section class="profile-posts">
+
+            <h2>
+                <%= profileUser.name %>'s Posts
+            </h2>
+
+            <% if (posts.length === 0) { %>
+
+                <div class="no-posts">
+
+                    <p>
+                        No posts yet.
+                    </p>
+
+                </div>
+
+            <% } %>
+
+
+            <% posts.forEach(post => { %>
+
+                <article class="post-card">
+
+                    <div class="post-header">
+
+                        <div>
+
+                            <strong>
+                                <%= profileUser.name %>
+                            </strong>
+
+                            <p>
+                                @<%= profileUser.username %>
+                            </p>
+
+                        </div>
+
+                        <small>
+                            <%= post.created_at %>
+                        </small>
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <p>
+                            <%= post.content %>
+                        </p>
+
+                    </div>
+
+
+                    <div class="post-actions">
+
+                        <span>
+                            ❤️ <%= post.like_count %>
+                            Likes
+                        </span>
+
+                        <span>
+                            💬 <%= post.comment_count %>
+                            Comments
+                        </span>
+
+                    </div>
+
+                </article>
+
+            <% }); %>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 CodeAlpha Social Media Platform
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

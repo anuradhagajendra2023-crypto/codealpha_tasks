@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+</head>
+
+<body>
+
+    <h1>Order Confirmed!</h1>
+
+    <p>Thank you for your order, <%= order.name %>.</p>
+
+    <h2>Order Details</h2>
+
+    <p>Order ID: <%= order.id %></p>
+
+    <p>Email: <%= order.email %></p>
+
+    <p>Address: <%= order.address %></p>
+
+    <hr>
+
+    <% order.items.forEach(item => { %>
+
+        <div>
+            <h3><%= item.name %></h3>
+
+            <p>Quantity: <%= item.quantity %></p>
+
+            <p>
+                Price:
+                $<%= (item.price * item.quantity).toFixed(2) %>
+            </p>
+        </div>
+
+    <% }); %>
+
+    <hr>
+
+    <h2>Total: $<%= order.total.toFixed(2) %></h2>
+
+    <br>
+
+    <a href="/">Continue Shopping</a>
+
+</body>
+</html>

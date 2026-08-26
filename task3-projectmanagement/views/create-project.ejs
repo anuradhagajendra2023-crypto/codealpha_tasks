@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Project - CodeAlpha Projects</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            📋 CodeAlpha Projects
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">
+                🏠 Dashboard
+            </a>
+
+            <a href="/logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main -->
+    <main class="container">
+
+        <div class="form-card">
+
+            <h1>➕ Create New Project</h1>
+
+            <p>
+                Create a project and start managing your tasks.
+            </p>
+
+
+            <% if (error) { %>
+
+                <div class="error">
+                    <%= error %>
+                </div>
+
+            <% } %>
+
+
+            <form
+                action="/projects/create"
+                method="POST"
+            >
+
+                <label for="name">
+                    Project Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter project name"
+                    required
+                >
+
+
+                <label for="description">
+                    Project Description
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="5"
+                    placeholder="Describe your project..."
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    🚀 Create Project
+                </button>
+
+                <a
+                    href="/dashboard"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CodeAlpha Project Management
+        </p>
+
+    </footer>
+
+</body>
+</html>

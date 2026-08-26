@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+</head>
+
+<body>
+
+    <h1>Order History</h1>
+
+    <% if (orders.length === 0) { %>
+
+        <p>No orders found.</p>
+
+    <% } else { %>
+
+        <% orders.forEach(order => { %>
+
+            <div>
+                <h2>Order ID: <%= order.id %></h2>
+
+                <p>Name: <%= order.name %></p>
+                <p>Email: <%= order.email %></p>
+                <p>Address: <%= order.address %></p>
+
+                <h3>Items:</h3>
+
+                <% order.items.forEach(item => { %>
+
+                    <p>
+                        <%= item.name %> -
+                        Quantity: <%= item.quantity %> -
+                        $<%= (item.price * item.quantity).toFixed(2) %>
+                    </p>
+
+                <% }); %>
+
+                <h3>
+                    Total: $<%= order.total.toFixed(2) %>
+                </h3>
+
+                <hr>
+
+            </div>
+
+        <% }); %>
+
+    <% } %>
+
+    <br>
+
+    <a href="/">Continue Shopping</a>
+
+</body>
+</html>

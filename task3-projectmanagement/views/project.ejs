@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= project.name %> - CodeAlpha Projects</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            📋 CodeAlpha Projects
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">
+                🏠 Dashboard
+            </a>
+
+            <span>
+                👤 <%= user.name %>
+            </span>
+
+            <a href="/logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main -->
+    <main class="container">
+
+        <!-- Project Header -->
+        <div class="project-header">
+
+            <div>
+
+                <h1>
+                    📁 <%= project.name %>
+                </h1>
+
+                <p>
+                    <%= project.description || "No description available." %>
+                </p>
+
+                <small>
+                    👤 Project Owner:
+                    <%= project.owner_name %>
+                </small>
+
+            </div>
+
+            <a
+                href="/dashboard"
+                class="button"
+            >
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+
+        <!-- Add Member -->
+        <section class="board-section">
+
+            <h2>
+                👥 Add Team Member
+            </h2>
+
+            <form
+                action="/projects/<%= project.id %>/members"
+                method="POST"
+                class="inline-form"
+            >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter user's email"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Add Member
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Team Members -->
+        <section class="board-section">
+
+            <h2>
+                👥 Team Members
+            </h2>
+
+            <div class="members-list">
+
+                <% if (members.length === 0) { %>
+
+                    <p>
+                        No team members yet.
+                    </p>
+
+                <% } else { %>
+
+                    <% members.forEach(member => { %>
+
+                        <div class="member-card">
+
+                            <strong>
+                                <%= member.name %>
+                            </strong>
+
+                            <span>
+                                @<%= member.username %>
+                            </span>
+
+                            <small>
+                                <%= member.email %>
+                            </small>
+
+                        </div>
+
+                    <% }); %>
+
+                <% } %>
+
+            </div>
+
+        </section>
+
+
+        <!-- Create Task -->
+        <section class="board-section">
+
+            <h2>
+                ➕ Create Task
+            </h2>
+
+            <form
+                action="/projects/<%= project.id %>/tasks"
+                method="POST"
+                class="task-form"
+            >
+
+                <label>
+                    Task Title
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Enter task title"
+                    required
+                >
+
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    name="description"
+                    rows="4"
+                    placeholder="Describe the task..."
+                ></textarea>
+
+
+                <label>
+                    Assign To
+                </label>
+
+                <select name="assigned_to">
+
+                    <option value="">
+                        -- Select Team Member --
+                    </option>
+
+                    <% members.forEach(member => { %>
+
+                        <option value="<%= member.id %>">
+                            <%= member.name %> (@<%= member.username %>)
+                        </option>
+
+                    <% }); %>
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    ➕ Create Task
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Project Board -->
+        <section class="board-section">
+
+            <h2>
+                📋 Project Board
+            </h2>
+
+
+            <% if (tasks.length === 0) { %>
+
+                <div class="empty-card">
+
+                    <h3>
+                        No tasks yet
+                    </h3>
+
+                    <p>
+                        Create a task above to start working on this project.
+                    </p>
+
+                </div>
+
+            <% } else { %>
+
+
+                <div class="board">
+
+
+                    <!-- TODO -->
+                    <div class="column">
+
+                        <h3>
+                            📝 To Do
+                        </h3>
+
+
+                        <% tasks
+                            .filter(task => task.status === "todo")
+                            .forEach(task => { %>
+
+
+                            <div class="task-card">
+
+                                <h4>
+                                    <%= task.title %>
+                                </h4>
+
+                                <p>
+                                    <%= task.description || "No description." %>
+                                </p>
+
+
+                                <small>
+
+                                    <% if (task.assigned_name) { %>
+
+                                        👤
+                                        <%= task.assigned_name %>
+
+                                    <% } else { %>
+
+                                        👤 Unassigned
+
+                                    <% } %>
+
+                                </small>
+
+
+                                <div class="task-actions">
+
+                                    <a
+                                        href="/tasks/<%= task.id %>"
+                                        class="button small-button"
+                                    >
+                                        💬 Open
+                                    </a>
+
+
+                                    <form
+                                        action="/tasks/<%= task.id %>/status"
+                                        method="POST"
+                                    >
+
+                                        <input
+                                            type="hidden"
+                                            name="status"
+                                            value="inprogress"
+                                        >
+
+                                        <button
+                                            type="submit"
+                                            class="status-button"
+                                        >
+                                            ▶ Start
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+
+                        <% }); %>
+
+                    </div>
+
+
+                    <!-- IN PROGRESS -->
+                    <div class="column">
+
+                        <h3>
+                            🔄 In Progress
+                        </h3>
+
+
+                        <% tasks
+                            .filter(task => task.status === "inprogress")
+                            .forEach(task => { %>
+
+
+                            <div class="task-card">
+
+                                <h4>
+                                    <%= task.title %>
+                                </h4>
+
+                                <p>
+                                    <%= task.description || "No description." %>
+                                </p>
+
+
+                                <small>
+
+                                    <% if (task.assigned_name) { %>
+
+                                        👤
+                                        <%= task.assigned_name %>
+
+                                    <% } else { %>
+
+                                        👤 Unassigned
+
+                                    <% } %>
+
+                                </small>
+
+
+                                <div class="task-actions">
+
+                                    <a
+                                        href="/tasks/<%= task.id %>"
+                                        class="button small-button"
+                                    >
+                                        💬 Open
+                                    </a>
+
+
+                                    <form
+                                        action="/tasks/<%= task.id %>/status"
+                                        method="POST"
+                                    >
+
+                                        <input
+                                            type="hidden"
+                                            name="status"
+                                            value="done"
+                                        >
+
+                                        <button
+                                            type="submit"
+                                            class="status-button"
+                                        >
+                                            ✅ Complete
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+
+                        <% }); %>
+
+                    </div>
+
+
+                    <!-- DONE -->
+                    <div class="column">
+
+                        <h3>
+                            ✅ Completed
+                        </h3>
+
+
+                        <% tasks
+                            .filter(task => task.status === "done")
+                            .forEach(task => { %>
+
+
+                            <div class="task-card completed">
+
+                                <h4>
+                                    <%= task.title %>
+                                </h4>
+
+                                <p>
+                                    <%= task.description || "No description." %>
+                                </p>
+
+
+                                <small>
+
+                                    <% if (task.assigned_name) { %>
+
+                                        👤
+                                        <%= task.assigned_name %>
+
+                                    <% } else { %>
+
+                                        👤 Unassigned
+
+                                    <% } %>
+
+                                </small>
+
+
+                                <div class="task-actions">
+
+                                    <a
+                                        href="/tasks/<%= task.id %>"
+                                        class="button small-button"
+                                    >
+                                        💬 Open
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+
+                        <% }); %>
+
+                    </div>
+
+
+                </div>
+
+
+            <% } %>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CodeAlpha Project Management
+        </p>
+
+    </footer>
+
+</body>
+</html>

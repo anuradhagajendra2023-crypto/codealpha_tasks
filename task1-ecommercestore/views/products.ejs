@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeAlpha Store</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <!-- Navigation Bar -->
+<nav class="navbar">
+
+    <div class="logo">
+        🛍️ CodeAlpha Store
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/cart">
+            🛒 Cart
+        </a>
+
+        <% if (user) { %>
+
+            <a href="/orders">
+                📦 My Orders
+            </a>
+
+            <span>
+                👤 Hello, <%= user.name %>
+            </span>
+
+            <a href="/logout">
+                🚪 Logout
+            </a>
+
+        <% } else { %>
+
+            <a href="/login">
+                🔑 Login
+            </a>
+
+            <a href="/register">
+                📝 Register
+            </a>
+
+        <% } %>
+
+    </div>
+
+</nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Welcome to CodeAlpha Store</h1>
+
+            <p>
+                Discover amazing products at great prices.
+            </p>
+
+            <a href="#products" class="hero-button">
+                Shop Now
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Products Section -->
+    <main class="container" id="products">
+
+        <div class="section-heading">
+            <h2>Our Products</h2>
+
+            <p>
+                Choose from our collection of quality products.
+            </p>
+        </div>
+
+
+        <!-- Product Grid -->
+        <div class="products">
+
+            <% products.forEach(product => { %>
+
+                <div class="product-card">
+
+                    <!-- Product Image -->
+                    <div class="product-image">
+
+                        <% if (product.image) { %>
+
+                            <img
+                                src="<%= product.image %>"
+                                alt="<%= product.name %>"
+                            >
+
+                        <% } else { %>
+
+                            <div class="no-image">
+                                🛍️
+                            </div>
+
+                        <% } %>
+
+                    </div>
+
+
+                    <!-- Product Information -->
+                    <div class="product-info">
+
+                        <h3>
+                            <%= product.name %>
+                        </h3>
+
+                        <p class="description">
+                            <%= product.description %>
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                ₹<%= product.price %>
+                            </span>
+
+                            <span class="stock">
+                                Stock: <%= product.stock %>
+                            </span>
+
+                        </div>
+
+
+                        <!-- View Details -->
+                        <a
+                            href="/product/<%= product.id %>"
+                            class="details-button"
+                        >
+                            View Details
+                        </a>
+
+
+                        <!-- Add To Cart -->
+                        <form
+                            action="/cart/add/<%= product.id %>"
+                            method="POST"
+                        >
+
+                            <button
+                                type="submit"
+                                class="cart-button"
+                            >
+                                🛒 Add to Cart
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            <% }); %>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CodeAlpha Store. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>

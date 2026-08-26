@@ -1,0 +1,576 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    background: #1f2937;
+    color: white;
+    padding: 16px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h1 {
+    margin-bottom: 10px;
+}
+
+.auth-card h2 {
+    margin-bottom: 25px;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth-card input {
+    margin-bottom: 12px;
+}
+
+.auth-card p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.auth-card a {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-size: 15px;
+    background: white;
+}
+
+textarea {
+    resize: vertical;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button,
+.button {
+    display: inline-block;
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover,
+.button:hover {
+    opacity: 0.9;
+}
+
+.small-button {
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+.status-button {
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+.cancel-button {
+    display: inline-block;
+    margin-top: 12px;
+    color: #555;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   PROJECT GRID
+========================= */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+
+/* =========================
+   EMPTY CARD
+========================= */
+
+.empty-card {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.form-card h1 {
+    margin-bottom: 10px;
+}
+
+.form-card > p {
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* =========================
+   PROJECT HEADER
+========================= */
+
+.project-header {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.project-header h1 {
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   BOARD SECTIONS
+========================= */
+
+.board-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.board-section h2 {
+    margin-bottom: 18px;
+}
+
+
+/* =========================
+   INLINE FORM
+========================= */
+
+.inline-form {
+    display: flex;
+    gap: 10px;
+}
+
+.inline-form input {
+    flex: 1;
+}
+
+
+/* =========================
+   MEMBERS
+========================= */
+
+.members-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.member-card {
+    background: #f3f4f6;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 200px;
+}
+
+.member-card strong,
+.member-card span,
+.member-card small {
+    display: block;
+}
+
+
+/* =========================
+   TASK FORM
+========================= */
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* =========================
+   PROJECT BOARD
+========================= */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.column {
+    background: #f3f4f6;
+    padding: 18px;
+    border-radius: 10px;
+    min-height: 250px;
+}
+
+.column h3 {
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   TASK CARD
+========================= */
+
+.task-card {
+    background: white;
+    padding: 18px;
+    border-radius: 9px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.task-card h4 {
+    margin-bottom: 8px;
+}
+
+.task-card p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.task-card small {
+    color: #666;
+}
+
+.task-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.task-actions form {
+    display: inline;
+}
+
+.completed {
+    opacity: 0.75;
+}
+
+
+/* =========================
+   TASK DETAILS
+========================= */
+
+.task-detail-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-description {
+    margin-top: 25px;
+}
+
+.task-description h3 {
+    margin-bottom: 8px;
+}
+
+.task-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.status-badge {
+    display: inline-block;
+    background: #e5e7eb;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   COMMENTS
+========================= */
+
+.comments-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.comments-list {
+    margin-bottom: 30px;
+}
+
+.comment-card {
+    background: #f9fafb;
+    border-left: 4px solid #2563eb;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+}
+
+.comment-header {
+    margin-bottom: 7px;
+}
+
+.comment-header span {
+    color: #777;
+    margin-left: 5px;
+}
+
+.comment-card small {
+    color: #888;
+}
+
+.comment-form {
+    margin-top: 25px;
+    border-top: 1px solid #ddd;
+    padding-top: 25px;
+}
+
+.comment-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+.delete-section {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.delete-button {
+    background: #dc2626;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    margin-top: 40px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .board {
+        grid-template-columns: 1fr;
+    }
+
+    .inline-form {
+        flex-direction: column;
+    }
+}
